@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  agr-contracts-validate:
+    name: Run agr-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/agr-contracts-ci.yaml
+
+  agr-contracts-release:
+    name: Run agr-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/agr-contracts-cd.yaml
+    needs: agr-contracts-validate
+
+  agr-frontend-validate:
+    name: Run agr-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/agr-frontend-ci.yaml
+
+  agr-frontend-release:
+    name: Run agr-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/agr-frontend-cd.yaml
+    needs: agr-frontend-validate

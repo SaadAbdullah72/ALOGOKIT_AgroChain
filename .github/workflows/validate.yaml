@@ -1,0 +1,14 @@
+name: Pull Request validation
+
+on: [pull_request]
+
+
+jobs:
+  agr-contracts-ci:
+    name: Run agr-contracts validation
+    uses: ./.github/workflows/agr-contracts-ci.yaml
+
+  agr-frontend-ci:
+    name: Run agr-frontend validation
+    uses: ./.github/workflows/agr-frontend-ci.yaml
+
