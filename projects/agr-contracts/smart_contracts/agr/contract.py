@@ -5,4 +5,4 @@ from algopy.arc4 import abimethod
 class Agr(ARC4Contract):
     @abimethod()
     def hello(self, name: String) -> String:
-        return "Hello, " + name
+        return "Added successfully : " + name
